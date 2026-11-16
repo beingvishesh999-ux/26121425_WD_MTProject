@@ -1,0 +1,193 @@
+/* ===== Design tokens (single source for the colour palette) ===== */
+:root {
+    --bg: #000000;
+    --surface: #0d0d0d;
+    --card: #141414;
+    --border: #262626;
+    --text: #ffffff;
+    --text-body: #d4d4d4;
+    --text-muted: #94a3b8;
+    --accent: #60a5fa;      /* blue  - links, underlines */
+    --accent-2: #38bdf8;    /* cyan  - tagline, pills */
+    --green: #10b981;
+    --indigo: #6366f1;
+    --pink: #ec4899;
+    --orange: #fb923c;
+}
+
+/* ===== Reset & base (element selectors) ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+}
+
+/* offset anchor jumps so the sticky navbar doesn't cover headings */
+section[id] { scroll-margin-top: 80px; }
+
+/* ===== Layout wrapper ===== */
+.wrap {
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 35px;
+}
+
+/* ===== Navbar (flexbox + sticky positioning) ===== */
+.navbar {
+    background-color: #0a0a0a;
+    position: sticky;
+    top: 0;
+    padding: 14px 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.menu { list-style: none; display: flex; gap: 25px; }
+
+.menu a {
+    color: #a3a3a3;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.menu a:hover { color: var(--accent); }
+
+/* ===== Hero ===== */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    margin-bottom: 35px;
+    border-bottom: 2px solid var(--border);
+}
+
+.gradient-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #60a5fa, #c084fc, #f472b6, #fb923c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.tagline { color: var(--accent-2); font-size: 1.2rem; margin-bottom: 6px; }
+.sub-text { color: var(--text-muted); font-size: 0.9rem; }
+
+/* ===== Section boxes ===== */
+.box {
+    background-color: var(--surface);
+    padding: 35px;
+    margin-bottom: 28px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.box h2 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    display: inline-block;
+}
+
+.box p, .item p { color: var(--text-body); }
+
+/* ID selectors: one accent colour per section */
+#about    { border-left: 5px solid var(--green); }
+#edu      { border-left: 5px solid var(--indigo); }
+#projects { border-left: 5px solid var(--pink); }
+#skills   { border-left: 5px solid var(--orange); }
+
+/* ===== Cards ===== */
+.item {
+    background-color: var(--card);
+    padding: 18px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s;
+}
+.item:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+.item h3 { font-size: 1.1rem; margin-bottom: 3px; color: #f1f5f9; }
+
+.date {
+    font-size: 0.85rem;
+    color: #cbd5e1 !important;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Projects: CSS Grid, two cards side by side */
+#projects .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+#projects .grid .item { margin-bottom: 0; }
+
+/* ===== Skill pills ===== */
+.pill-box { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.pill {
+    background-color: #171717;
+    color: var(--accent-2);
+    border: 1px solid #404040;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.pill:hover { background-color: #1e293b; border-color: var(--accent-2); }
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #050505;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+    .wrap, .nav-wrap { padding: 0 16px; }
+    .nav-wrap { flex-direction: column; gap: 10px; }
+    .menu { gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .hero { padding: 50px 16px; }
+    .gradient-title { font-size: 2.1rem; }
+    .box { padding: 22px; }
+    #projects .grid { grid-template-columns: 1fr; }
+}
